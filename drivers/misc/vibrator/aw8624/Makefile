@@ -1,0 +1,2 @@
+#for AWINIC AW8624 Haptic
+obj-$(CONFIG_HAPTICS_DRIVER)    += aw8624.o

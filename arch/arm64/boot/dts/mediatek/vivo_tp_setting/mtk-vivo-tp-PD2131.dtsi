@@ -1,0 +1,266 @@
+/*********************touch screen config *************************/
+&touchscreencfg { /* vivo ts configure */
+	tp_module1 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<81>;
+		vts-type=<0>;
+		vts-lcmid=<17>;// TM + NT36672  1211724 
+		vts-dimention-x=<1080>;
+		vts-dimention-y=<2408>;
+		vts-tx-sensors=<16>;
+		vts-rx-sensors=<36>;
+		vts-gesture=<1>;
+		vts-incell=<1>;
+		vts-need-caliberation=<0>;
+		vts-virtual-proximinity=<0>;
+		vts-long-press=<0>;
+		vts-module-vendor=<0xF0>;
+		vts-no-flash=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+		vts-delay-avee=<200>;
+	};
+
+	tp_module2 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<36>;
+		vts-type=<0>;
+		vts-lcmid=<65>;// JDI + FT8719P  1211710
+		vts-dimention-x=<1080>;
+		vts-dimention-y=<2408>;
+		vts-tx-sensors=<16>;
+		vts-rx-sensors=<36>;
+		vts-gesture=<1>;
+		vts-incell=<1>;
+		vts-need-caliberation=<0>;
+		vts-virtual-proximinity=<0>;
+		vts-long-press=<0>;
+		vts-module-vendor=<0xF0>;
+		vts-no-flash=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+		vts-report-timestamp=<1>;
+	};
+
+	tp_module3 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<91>;
+		vts-type=<0>;
+		vts-lcmid=<128>;// HX + ILI7807S  1211740
+		vts-dimention-x=<1080>;
+		vts-dimention-y=<2408>;
+		vts-tx-sensors=<16>;
+		vts-rx-sensors=<36>;
+		vts-incell=<1>;
+ 		vts-need-caliberation=<0>;
+ 		vts-virtual-proximinity=<0>;
+ 		vts-long-press=<0>;
+		vts-module-vendor=<0xF0>;
+		vts-no-flash=<1>;
+		vts-gesture=<1>;
+		vts-game-mode=<1>;
+	};
+};
+
+/ {
+	fragment@touch {
+		target-path = "/";
+		__overlay__ {
+			mobileevent {
+				status = "okay";
+				compatible = "vivo,mobile_event";
+				vivo-i2c-event=<1>;
+				//vivo-channel-broken=<1>;
+				//vivo-click-event=<1>;
+				//vivo-unexpected-reset-event=<1>;
+				vivo-log-system=<0>;
+				//vivo-prox-near=<1>;
+				//vivo-ng-panel-detect=<1>;
+			};
+		};
+	};
+};
+
+&pio {
+	spi_ft_cfg:spi_ft_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO182__FUNC_SPI1_CLK>,
+					<PINMUX_GPIO185__FUNC_SPI1_MO>;
+			drive-strength = <1>;//0:2mA 1:4mA 2:6mA 3:8mA 4:10mA 5:12mA 6:14mA 7:16mA
+		};
+	};
+
+	spi_nt_cfg:spi_nt_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO182__FUNC_SPI1_CLK>,
+					<PINMUX_GPIO185__FUNC_SPI1_MO>;
+			drive-strength = <4>;
+		};
+	};
+
+	spi_ili_cfg:spi_ili_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO182__FUNC_SPI1_CLK>,
+					<PINMUX_GPIO185__FUNC_SPI1_MO>;
+			drive-strength = <4>;
+		};
+	};
+	
+	spi_cs_set_cfg:spi_cs_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO183__FUNC_SPI1_CSB>;
+			drive-strength = <3>;
+		};
+	};
+
+	spi_cs_pulllow_cfg:spi_cs_pulllow {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO183__FUNC_GPIO183>;
+			slew-rate = <1>;
+			output-low;
+		};
+	};
+
+	tp_reset_active_cfg:tp_reset_active {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO15__FUNC_GPIO15>;
+			slew-rate = <1>;
+			output-high;
+		};
+	};
+
+	tp_reset_sleep_cfg:tp_reset_sleep {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO15__FUNC_GPIO15>;
+			slew-rate = <1>;
+			output-low;
+		};
+	};
+};
+
+&spi1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	mediatek,kthread-rt = <1>;
+
+	vts_device@0 {
+		compatible = "vivo,ts-spi";
+		status = "okay";
+		reg=<0>;
+		spi-max-frequency = <4800000>;
+
+		ft8720 {
+			compatible = "focaltech,ft8756_v2";
+			status = "ok";
+			mtk,vts-vddi-poweroff;
+			mtk,vts-cs-bootup;/*add for cs pull-down while boot up*/
+			pinctrl-names = "device_default", "spi_cs_set", "spi_cs_pulllow", "tp_reset_active", "tp_reset_sleep";
+			pinctrl-0 = <&spi_ft_cfg>;
+			pinctrl-1 = <&spi_cs_set_cfg>;
+			pinctrl-2 = <&spi_cs_pulllow_cfg>;
+			pinctrl-3 = <&tp_reset_active_cfg>;
+			pinctrl-4 = <&tp_reset_sleep_cfg>;
+
+			vts-type=<0>;
+			vts-ic-number=<38>;
+			spi-max-frequency = <8000000>;	//4800000,9600000,15000000,19200000
+			focaltech,ic_name = "ft8720";
+			//focaltech,vts-reset-poweroff;
+			focaltech,vts-gesture-separate; //gesture firmware is separate
+			focaltech,reset-gpio = <&pio 15 0x00>;
+			focaltech,irq-gpio = <&pio 14 0x02>;
+			//focaltech,cs-gpio = <&tlmm 3 0x00>;
+			focaltech,max-touch-number = <10>;
+			focaltech,display-coords = <0 0 1080 2408>;
+
+			sensor-test-key="com.focaltouchscreen.sensortest:MainActivity:com.focaltouchscreen.sensortest:0:focal_test_result";
+			lcm-noise-test-key="com.focaltech.deltadiff:MainActivity:null:null:null";
+			rawdata-test-key="com.focaltech.deltadiff:DataActivity:null:null:null";
+			rf-noise-test-key="com.focaltech.deltadiff:BspTestActivity:com.focaltech.deltadiff:0:testResult";
+		};
+
+		nt36672 {
+			compatible = "novatek,NVT-ts-spi-v2";
+			status = "ok";
+			mtk,vts-vddi-poweroff;
+			mtk,vts-cs-bootup;/*add for cs pull-down while boot up*/
+			pinctrl-names ="device_default", "spi_cs_set", "spi_cs_pulllow";
+			pinctrl-0 = <&spi_nt_cfg>;
+			pinctrl-1 = <&spi_cs_set_cfg>;
+			pinctrl-2 = <&spi_cs_pulllow_cfg>;
+
+			vts-type=<0>;
+			vts-ic-number=<81>;
+			spi-max-frequency = <9600000>;	//4800000,9600000,15000000,19200000
+			novatek,reset-gpio = <&pio 15 0x00>;
+			novatek,irq-gpio = <&pio 14 0x2001>;
+			novatek,cs-gpio = <&pio 183 0x00>;
+			novatek,miso-gpio = <&pio 184 0x00>;
+			sensor-test-key="com.nttouchscreen.mptest:MainActivity:android.intent.action.novatek:0:testResult";
+			lcm-noise-test-key="com.nt36xxxtouchscreen.deltadiff:MainActivity:null:null:null";
+			rawdata-test-key="com.nttouchscreen.getdata:MainActivity:null:null:null";
+			rf-noise-test-key="com.nt36xxxtouchscreen.deltadiff:BspTest:android.intent.action.nvtdeltadiff:0:testResult";
+
+			//vts-incell-panel = <&dsi_nt36675_tm_fhdplus_video &dsi_ft8756_truly_fhdplus_video &dsi_nt36672c_tm657_dsc_fhdplus_video>;
+			novatek,swrst-n8-addr = <0x03F0FE>;
+		};
+
+		ft8719 {
+			compatible = "focaltech,ft8719_v2";
+			status = "ok";
+			mtk,vts-vddi-poweroff;
+			mtk,vts-cs-bootup;/*add for cs pull-down while boot up*/
+			pinctrl-names = "device_default", "spi_cs_set", "spi_cs_pulllow", "tp_reset_active", "tp_reset_sleep";
+			pinctrl-0 = <&spi_ft_cfg>;
+			pinctrl-1 = <&spi_cs_set_cfg>;
+			pinctrl-2 = <&spi_cs_pulllow_cfg>;
+			pinctrl-3 = <&tp_reset_active_cfg>;
+			pinctrl-4 = <&tp_reset_sleep_cfg>;
+			vts-type=<0>;
+			vts-ic-number=<36>;
+			spi-max-frequency = <8000000>;	//4800000,9600000,15000000,19200000
+			focaltech,ic_name = "ft8719";
+			//focaltech,vts-reset-poweroff;
+			focaltech,vts-gesture-separate; //gesture firmware is separate
+			focaltech,reset-gpio = <&pio 15 0x00>;
+			focaltech,irq-gpio = <&pio 14 0x02>;
+			//focaltech,cs-gpio = <&tlmm 3 0x00>;
+			focaltech,max-touch-number = <10>;
+			focaltech,display-coords = <0 0 1080 2408>;
+
+			sensor-test-key="com.focaltouchscreen.sensortest:MainActivity:com.focaltouchscreen.sensortest:0:focal_test_result";
+			lcm-noise-test-key="com.focaltech.deltadiff:MainActivity:null:null:null";
+			rawdata-test-key="com.focaltech.deltadiff:DataActivity:null:null:null";
+			rf-noise-test-key="com.focaltech.deltadiff:BspTestActivity:com.focaltech.deltadiff:0:testResult";
+		};
+
+		ili_9882n {
+			compatible = "tchip,ilitek";
+			status = "ok";
+			mtk,vts-vddi-poweroff;
+			mtk,vts-cs-bootup;/*add for cs pull-down while boot up*/
+			pinctrl-names ="device_default", "spi_cs_set", "spi_cs_pulllow", "tp_reset_active", "tp_reset_sleep";
+			pinctrl-0 = <&spi_ili_cfg>;
+			pinctrl-1 = <&spi_cs_set_cfg>;
+			pinctrl-2 = <&spi_cs_pulllow_cfg>;
+			pinctrl-3 = <&tp_reset_active_cfg>;
+			pinctrl-4 = <&tp_reset_sleep_cfg>;
+			vts-type=<0>;
+			vts-ic-number=<91>;
+			spi-max-frequency = <9600000>;
+			touch,reset-gpio = <&pio 15 0x00>;
+			touch,irq-gpio = <&pio 14 0x02>;
+			//touch,cs-gpio = <&pio 183 0x00>;
+			ilits,vts-reset-poweroff = <1>;
+
+			sensor-test-key="com.ilitek.touchscreen.tptest3X:MP3XActivity:com.ilitek.touchscreen.action.tptest:0:ILITEK_TpTestResult";
+			lcm-noise-test-key="com.ilitek.touchscreen.noisev2:MainActivity:null:null:null";
+			rawdata-test-key="com.ilitek.touchscreen.noisev2:DataShowActivity:null:null:null";
+			rf-noise-test-key="com.ilitek.touchscreen.noisev2:BspTestActivity:com.ilitek.touchscreen.action.noisetest:0:ILITEK_TpTestResult";
+
+			//vts-incell-panel = <&dsi_pd2111_hx658_ili7807s_fhdplus_video>;
+		};
+	};
+};
+

@@ -1,0 +1,5 @@
+config BBK_ET713
+  tristate "EGISTEC OEM fingerprint BBK_ET713 support"
+  default n
+  help
+    Egistec Fingerprint chip ET713 TEE driver

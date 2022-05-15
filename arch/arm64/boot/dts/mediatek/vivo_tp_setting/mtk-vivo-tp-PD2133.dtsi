@@ -1,0 +1,262 @@
+/*********************touch screen config *************************/
+&touchscreencfg { /* vivo ts configure */
+	tp_module1 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<72>;
+		vts-type=<0>;
+		vts-lcmid=<32>;        //CPD2027
+		vts-dimention-x=<1440>;
+		vts-dimention-y=<3120>;
+		vts-display-x=<1080>;
+		vts-display-y=<2376>;
+		vts-tx-sensors=<17>;
+		vts-rx-sensors=<37>;
+		vts-incell=<0>;
+		vts-need-caliberation=<1>;
+		vts-virtual-proximinity=<0>;
+		vts-long-press=<1>;
+		vts-band=<1>;
+		vts-gesture=<1>;
+		vts-module-vendor=<0x90>;
+		vts-report-timestamp=<1>;
+		vts-finger-mode=<1>;
+		vts-resolution-adjust=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+		vts-screen-clock=<1>;
+		vts-sclock-hilight=<1>;
+		vts-input-method=<1>;
+		vts-screenshot-triger=<1>;
+		vts-finger-center=<1>;
+		vts-finger-center-x=<540>;
+		vts-finger-center-y=<2114>;
+		vts-reject-area-collect=<25>;
+		vts-gamemode-freq=<1>;
+		vts-set-card-region=<1>;
+		vts-set-card-region-width = <200>;
+		vts-game-save-power=<1>;
+		vts-tx-freq-write=<1>;
+
+		vts-edge-rejection=<1>;
+		cfg_version="0004";
+		cfg_normal_portrait="config:0:5:0,0,0,10,0,10,0,0,0,1,30,200,100,30,1,0,0,25,0,25,0,1,0,1,65,300,65,300,256,0,0,100,0,0,0";
+		cfg_input_method_portrait="config:1:5:0,0,0,10,0,10,0,0,0,1,45,200,200,45,1,0,0,25,0,25,0,1,0,1,65,300,65,300,256,0,0,100,0,0,0";
+		cfg_game_portrait="config:2:5:0,0,0,10,0,10,0,0,0,1,30,200,100,30,1,0,0,25,0,25,0,1,0,1,65,300,65,300,256,0,0,70,0,0,0";
+		cfg_normal_landscape="config:3:7:0,1,0,10,0,10,0,0,1,2,30,100,100,30,0,1,3,30,100,100,30,1,1,0,30,50,30,50,1,1,2,80,80,80,80,1,1,3,100,100,100,100,256,0,0,70,0,0,0";
+		cfg_game_landscape="config:4:7:0,1,0,10,0,5,0,0,1,2,0,0,0,0,0,1,3,30,200,100,30,1,1,0,30,50,30,50,1,1,2,0,0,0,0,1,1,3,50,50,50,50,256,0,0,50,0,0,0";
+		cfg_video_landscape="config:5:7:0,1,0,10,0,10,0,0,1,2,50,100,100,50,0,1,3,50,100,100,50,1,1,0,30,70,30,50,1,1,2,100,200,100,200,1,1,3,100,200,100,200,256,0,0,80,0,0,0";
+		cfg_normal_special="config:6:1:256,0,0,100,0,0,0";
+		cfg_lying_special="config:7:1:256,0,0,135,0,0,0";
+	};
+
+	tp_module2 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<72>;
+		vts-type=<0>;
+		vts-lcmid=<33 255>;          //CPD2043
+		vts-dimention-x=<1440>;
+		vts-dimention-y=<3120>;
+		vts-display-x=<1080>;
+		vts-display-y=<2376>;
+		vts-tx-sensors=<17>;
+		vts-rx-sensors=<37>;
+		vts-incell=<0>;
+		vts-need-caliberation=<1>;
+		vts-virtual-proximinity=<1>;
+		vts-long-press=<1>;
+		vts-band=<1>;
+		vts-gesture=<1>;
+		vts-module-vendor=<0x90>;
+		vts-report-timestamp=<1>;
+		vts-finger-mode=<1>;
+		vts-resolution-adjust=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+		vts-screen-clock=<1>;
+		vts-sclock-hilight=<1>;
+		vts-input-method=<1>;
+		vts-screenshot-triger=<1>;
+		vts-finger-center=<1>;
+		vts-finger-center-x=<540>;
+		vts-finger-center-y=<2114>;
+		vts-reject-area-collect=<25>;
+		vts-gamemode-freq=<1>;
+		vts-set-card-region=<1>;
+		vts-set-card-region-width = <200>;
+		vts-game-save-power=<1>;
+		vts-tx-freq-write=<1>;
+	};
+
+	tp_module3 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<72>;
+		vts-type=<0>;
+		vts-lcmid=<34>;          //CPD2072
+		vts-dimention-x=<11171>;
+		vts-dimention-y=<24576>;
+		vts-display-x=<1080>;
+		vts-display-y=<2376>;
+		vts-tx-sensors=<17>;
+		vts-rx-sensors=<37>;
+		vts-incell=<0>;
+		vts-need-caliberation=<1>;
+		vts-virtual-proximinity=<1>;
+		vts-long-press=<1>;
+		vts-band=<1>;
+		vts-gesture=<1>;
+		vts-module-vendor=<0x90>;
+		vts-report-timestamp=<1>;
+		vts-finger-mode=<1>;
+		vts-resolution-adjust=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+		vts-screen-clock=<1>;
+		vts-sclock-hilight=<1>;
+		vts-input-method=<1>;
+		vts-screenshot-triger=<1>;
+		vts-finger-center=<1>;
+		vts-finger-center-x=<540>;
+		vts-finger-center-y=<2114>;
+		vts-gamemode-freq=<1>;
+		vts-reject-area-collect=<25>;
+		vts-set-card-region=<1>;
+		vts-set-card-region-width = <200>;
+		vts-game-save-power=<1>;
+		vts-tx-freq-write=<1>;
+	};
+
+	tp_module4 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<72>;
+		vts-type=<0>;
+		vts-lcmid=<35>;          //CPD2073
+		vts-dimention-x=<11171>;
+		vts-dimention-y=<24576>;
+		vts-display-x=<1080>;
+		vts-display-y=<2376>;
+		vts-tx-sensors=<17>;
+		vts-rx-sensors=<37>;
+		vts-incell=<0>;
+		vts-need-caliberation=<1>;
+		vts-virtual-proximinity=<0>;
+		vts-long-press=<1>;
+		vts-band=<1>;
+		vts-gesture=<1>;
+		vts-module-vendor=<0x90>;
+		vts-report-timestamp=<1>;
+		vts-finger-mode=<1>;
+		vts-resolution-adjust=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+		vts-screen-clock=<1>;
+		vts-sclock-hilight=<1>;
+		vts-input-method=<1>;
+		vts-screenshot-triger=<1>;
+		vts-finger-center=<1>;
+		vts-finger-center-x=<540>;
+		vts-finger-center-y=<2114>;
+		vts-gamemode-freq=<1>;
+		vts-reject-area-collect=<25>;
+		vts-set-card-region=<1>;
+		vts-set-card-region-width = <200>;
+		vts-game-save-power=<1>;
+		vts-tx-freq-write=<1>;
+
+		vts-edge-rejection=<1>;
+		cfg_version="0004";
+		cfg_normal_portrait="config:0:5:0,0,0,10,0,10,0,0,0,1,30,200,100,30,1,0,0,25,0,25,0,1,0,1,65,300,65,300,256,0,0,100,0,0,0";
+		cfg_input_method_portrait="config:1:5:0,0,0,10,0,10,0,0,0,1,45,200,200,45,1,0,0,25,0,25,0,1,0,1,65,300,65,300,256,0,0,100,0,0,0";
+		cfg_game_portrait="config:2:5:0,0,0,10,0,10,0,0,0,1,30,200,100,30,1,0,0,25,0,25,0,1,0,1,65,300,65,300,256,0,0,70,0,0,0";
+		cfg_normal_landscape="config:3:7:0,1,0,10,0,10,0,0,1,2,30,100,100,30,0,1,3,30,100,100,30,1,1,0,30,50,30,50,1,1,2,80,80,80,80,1,1,3,100,100,100,100,256,0,0,70,0,0,0";
+		cfg_game_landscape="config:4:7:0,1,0,10,0,5,0,0,1,2,0,0,0,0,0,1,3,30,200,100,30,1,1,0,30,50,30,50,1,1,2,0,0,0,0,1,1,3,50,50,50,50,256,0,0,50,0,0,0";
+		cfg_video_landscape="config:5:7:0,1,0,10,0,10,0,0,1,2,50,100,100,50,0,1,3,50,100,100,50,1,1,0,30,70,30,50,1,1,2,100,200,100,200,1,1,3,100,200,100,200,256,0,0,80,0,0,0";
+		cfg_normal_special="config:6:1:256,0,0,100,0,0,0";
+		cfg_lying_special="config:7:1:256,0,0,135,0,0,0";
+	};
+
+	
+};
+
+/ {
+	fragment@touch {
+		target-path = "/";
+		__overlay__ {
+			mobileevent {
+				status = "okay";
+				compatible = "vivo,mobile_event";
+				vivo-i2c-event=<1>;
+				vivo-channel-broken=<1>;
+				vivo-click-event=<1>;
+				vivo-unexpected-reset-event=<1>;
+				vivo-log-system=<0>;
+				vivo-prox-near=<1>;
+				vivo-hsync-collect=<1>;
+				vivo-ic-mode=<1>;
+				vivo-int-cost=<1>;
+				vivo-large-press-event=<1>;
+				vivo-multi-touch=<1>;
+				vivo-press-area=<1>;
+				vivo-edge-reject-fail=<1>;
+				vivo-resume-to-touch=<1>;
+				vivo-handler-cost=<1>;
+				vivo-five-more-touch=<1>;
+			};
+		};
+	};
+};
+
+&pio {
+	tp_i2c_driving_set_active:tp_i2c_driving_set_active { 
+		pins_cmd_dat { 
+			pinmux = <PINMUX_GPIO204__FUNC_SCL0>,
+					 <PINMUX_GPIO205__FUNC_SDA0>;
+					 bias-disable;
+		}; 
+	};	
+	
+	tp_i2c_driving_set_suspend:tp_i2c_driving_set_suspend { 
+		pins_cmd_dat { 
+			pinmux = <PINMUX_GPIO204__FUNC_SCL0>,
+					 <PINMUX_GPIO205__FUNC_SDA0>;
+					 bias-disable;
+		}; 
+	};
+
+	tp_int_driving_set_driving:tp_int_driving_set_driving {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO21__FUNC_GPIO21>;
+			bias-disable;
+		};
+	};
+
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <400000>;
+	sec_ts@48 {
+		compatible = "samsung,y761";
+		reg = <0x48>;
+		interrupt-parent = <&pio>;
+		interrupts = <21 IRQ_TYPE_EDGE_FALLING 21 0>;
+		
+		samsung,reset-gpio = <&pio 138 0x00>;
+		samsung,irq-gpio = <&pio 21 0x00>;
+		
+		pinctrl-names ="ts_active","ts_suspend";
+		pinctrl-0 = <&tp_i2c_driving_set_active &tp_int_driving_set_driving>;
+		pinctrl-1 = <&tp_i2c_driving_set_suspend &tp_int_driving_set_driving>;
+		
+		vts-ic-number=<72>;
+		vts-type=<0>;
+		
+		vcc_i2c-supply = <&mt_pmic_vfp_ldo_reg>;
+		avdd_pwr-supply = <&mt_pmic_vtp_ldo_reg>;
+		
+		
+		sensor-test-key="com.detection.ts.touch_detection:MainActivity:com.detection.ts.touch_detection:0:secTpResult";
+		lcm-noise-test-key="com.detection.ts.noise_detection_apk:MainActivity:null:null:null";
+		rf-noise-test-key="com.detection.ts.noise_detection_apk:BspTestActivity:com.detection.ts.noise_detection_apk:0:secBspResult";
+		rawdata-test-key="com.detection.ts.noise_detection_apk:DataShowActivity:null:null:null";
+	};
+};

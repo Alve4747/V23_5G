@@ -1,0 +1,109 @@
+&pio {
+	pd2166_tp_spi_mode: clk_mode_default {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO97__FUNC_SPI4_CLK>;
+			drive-strength = <1>;
+		};
+	};
+	pd2166_tp_spi_mosi_mode: mosi_mode_default {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO13__FUNC_SPI4_MO>;
+			drive-strength = <0>;
+		};
+	};
+};
+
+&spi4 {
+	status = "okay";
+	vts_device@0 {
+		compatible = "vivo,ts-spi";
+		status = "okay";
+		reg=<0>;
+		spi-max-frequency = <4800000>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pd2166_tp_spi_mode &pd2166_tp_spi_mosi_mode>;
+
+		ili_9882n {
+			status = "okay";
+			compatible = "tchip,ilitek";
+			vts-type=<0>;
+			vts-ic-number=<91>;
+			spi-max-frequency = <9600000>;
+			touch,reset-gpio = <&pio 186 0x00>;
+			touch,irq-gpio = <&pio 14 0x2001>;
+
+			sensor-test-key="com.ilitek.touchscreen.tptest3X:MP3XActivity:com.ilitek.touchscreen.action.tptest:0:ILITEK_TpTestResult";
+			lcm-noise-test-key="com.ilitek.touchscreen.noisev2:MainActivity:null:null:null"; 
+			rawdata-test-key="com.ilitek.touchscreen.noisev2:DataShowActivity:null:null:null";
+			rf-noise-test-key="com.ilitek.touchscreen.noisev2:BspTestActivity:com.ilitek.touchscreen.action.noisetest:0:ILITEK_TpTestResult";
+			//vts-incell-panel=<&dsi_pd2034_tm_ili9882n_hdplus_video &dsi_pd2034_inx_ili9882n_hdplus_video>;
+		};
+		ft8720 {
+			compatible = "focaltech,ft8756_v2";
+			vts-type=<0>;
+			vts-ic-number=<38>;
+			spi-max-frequency = <8000000>;	//4800000,9600000,15000000,19200000
+			focaltech,ic_name = "ft8720";
+			focaltech,reset-gpio = <&pio 186 0x00>;
+			focaltech,irq-gpio = <&pio 14 0x02>;
+			focaltech,cs-gpio = <&pio 98 0x00>;
+			focaltech,max-touch-number = <10>;
+			focaltech,display-coords = <0 0 1080 2408>;
+			focaltech,vts-gesture-separate = <1>;
+			focaltech,vts-reset-poweroff = <1>;
+			spi-cs-setuptime = <27>;
+			
+			sensor-test-key="com.focaltouchscreen.sensortest:MainActivity:com.focaltouchscreen.sensortest:0:focal_test_result";
+			lcm-noise-test-key="com.focaltech.deltadiff:MainActivity:null:null:null";
+			rawdata-test-key="com.focaltech.deltadiff:DataActivity:null:null:null";
+			rf-noise-test-key="com.focaltech.deltadiff:BspTestActivity:com.focaltech.deltadiff:0:testResult";
+			
+			//vts-incell-panel = <&dsi_pd2073_dj_ft8720_dsc_fhd_120_video>;
+		};	
+
+	};
+
+	tp_module1 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<91>;
+		vts-type=<0>;
+		vts-lcmid=<16>;// CPD2117 TMG5.5 incell ILI7807S 1211770/1211807
+		vts-dimention-x=<1080>;
+		vts-dimention-y=<2408>;
+		vts-tx-sensors=<16>;
+		vts-rx-sensors=<36>;
+		vts-incell=<1>;
+ 		vts-need-caliberation=<0>;
+ 		vts-virtual-proximinity=<0>;
+ 		vts-long-press=<0>;
+		vts-module-vendor=<0xF0>;
+		vts-no-flash=<1>;
+		vts-gesture=<1>;
+		vts-game-mode=<1>;
+		vts-game-save-power=<1>;
+	};
+	tp_module2 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<38>;
+		vts-type=<0>;
+		vts-dimention-x=<1080>;
+		vts-dimention-y=<2408>;
+		vts-tx-sensors=<16>;
+		vts-rx-sensors=<36>;
+		vts-incell=<1>;
+		vts-gesture=<1>;
+		vts-need-caliberation=<0>;
+		vts-virtual-proximinity=<0>;
+		vts-long-press=<0>;
+		vts-module-vendor=<0xC0>;
+		vts-no-flash=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+		vts-report-timestamp=<1>;
+		vts-lcmid=<129>;// CPD2117 FT8720+CSOT incell 1211794
+		vts-no-flash-unique-code=<1>;
+		//vts-set-blank=<1>;
+		vts-game-save-power=<1>;
+	};
+
+};

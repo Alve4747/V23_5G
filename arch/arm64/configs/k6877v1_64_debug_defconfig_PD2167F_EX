@@ -1,0 +1,96 @@
+CONFIG_MTK_AB_OTA_UPDATER=n
+CONFIG_LOG_BUF_SHIFT=21
+
+
+#######Disable low power protection by vivo#######
+CONFIG_MTK_FLASHLIGHT_PT=n
+CONFIG_MTK_FLASHLIGHT_PT_STRICT=n
+CONFIG_MTK_FLASHLIGHT_DLPT=n
+#######Disable low power protection by vivo#######
+
+#######add vivo ranchangshuang CCM CAMERA #######
+CONFIG_CUSTOM_KERNEL_IMGSENSOR="s5kgw1sd03pd2167f_mipi_raw s5kjnvsq04pd2167f_mipi_raw s5kjn1sq03pd2167f_mipi_raw ov8856pd2167f_mipi_raw hi846pd2167f_mipi_raw ov02b10pd2167f_mipi_raw"
+CONFIG_MTK_CAM_PD2167F_EX=y
+CONFIG_MTK_IMGSENSOR=y
+CONFIG_MTK_SENSOR_SUPPORT=y
+CONFIG_MTK_LENS=y
+CONFIG_MTK_FLASHLIGHT=y
+CONFIG_MTK_FLASHLIGHT_MT6360=y
+CONFIG_MTK_FLASHLIGHT_LM3644=y
+CONFIG_REGULATOR_FAN53870=y
+CONFIG_REGULATOR_FIXED_VOLTAGE=y
+CONFIG_SINGLE_FLASH_DUAL_LED=y
+#######add vivo ranchangshuang CCM CAMERA END#######
+
+########add hulianqin usb start############
+CONFIG_USB_RTL8152=y
+CONFIG_USB_LAN78XX=y
+CONFIG_USB_USBNET=y
+CONFIG_USB_ANNOUNCE_NEW_DEVICES=y
+CONFIG_USB_POWER_DELIVERY=y
+########add hulianqin usb end############
+# add by sensor team begin
+CONFIG_SENSOR_HUB_MONITOR=y
+# add by sensor team end
+#add for fingerprint start
+CONFIG_BBK_FINGERPRINT=y
+CONFIG_BBK_FP_DISPATCH_EVENT=y
+CONFIG_BBK_FP_ID=y
+CONFIG_BBK_GF9578=y
+#add for fingerprint end
+
+# add by zhangzhizhao start
+CONFIG_NFC_SN100=y
+CONFIG_NFC_CHIP_SUPPORT=y
+CONFIG_SN100_SPI=y
+# add by zhangzhizhao end
+### vivo audio dxl add start ###
+CONFIG_ACCDET_EINT_IRQ=n
+CONFIG_ACCDET_SUPPORT_EINT0=n
+CONFIG_MTK_ACCDET=y
+CONFIG_ACCDET_EINT=y
+CONFIG_EXTRA_FIRMWARE="valhall-1691526.wa tfa98xx_PD2167F_EX.cnt"
+CONFIG_SND_CODEC_TFA9874=y
+CONFIG_MTK_TYPEC_ACCDET=y
+### vivo audio dxl add end ###
+
+#vivo guoyanxiao add for modem config begin
+CONFIG_MTK_MD1_SUPPORT=25
+CONFIG_MTK_MD3_SUPPORT=0
+CONFIG_MTK_C2K_LTE_MODE=2
+CONFIG_MTK_ECCCI_C2K=y
+#vivo guoyanxiao add for modem config end
+
+########add linux bsp##############
+CONFIG_EVENT_TRACK=y
+CONFIG_DETECT_HUNG_TASK=y
+CONFIG_DEFAULT_HUNG_TASK_TIMEOUT=150
+# CONFIG_ONEKEY_REBOOT_NORMAL_MODE=y is not set
+# CONFIG_ONEKEY_REBOOT_OTHER_MODE=y is not set
+CONFIG_TWOKEY_REBOOT_NORMAL_MODE=y
+########add linux bsp end##########
+
+#vivo shijianxing add begin for ok google
+CONFIG_MTK_VOW_SUPPORT=y
+CONFIG_MTK_VOW_BARGE_IN_SUPPORT=n
+CONFIG_MTK_VOW_DUAL_MIC_SUPPORT=n
+CONFIG_MTK_VOW_AMAZON_SUPPORT=n
+CONFIG_MTK_VOW_GVA_SUPPORT=y
+CONFIG_MTK_VOW_DSP_VERSION="ver02"
+#vivo shijianxing add end
+
+# add for disply begin
+CONFIG_MTK_HDR_VIDEO_SUPPORT=y
+CONFIG_MTK_ROUND_CORNER_SUPPORT=y
+CONFIG_VIVO_PD2167_PQ_COLOR=y
+# add for disply end
+
+#vivo zhengyongkang add for widevine L1 begin
+CONFIG_MTK_ENABLE_GENIEZONE=y
+CONFIG_MTK_SEC_VIDEO_PATH_SUPPORT=y
+CONFIG_MTK_DRM_KEY_MNG_SUPPORT=y
+
+CONFIG_MTK_PERSIST_PARTITION_SUPPORT=y
+CONFIG_MTK_WVDRM_L1_SUPPORT=y
+CONFIG_MTK_SVP_ON_MTEE_SUPPORT=y
+#vivo zhengyongkang add for widevine L1 end

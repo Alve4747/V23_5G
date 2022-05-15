@@ -1,0 +1,6 @@
+config HAPTICS_DRIVER
+    tristate "VIVO Haptics CORE support"
+	default y
+    help
+        This option enables vibrator class driver support for not input-ff framework vibrator driver.
+        Mainly used for the third party peripheral chip.

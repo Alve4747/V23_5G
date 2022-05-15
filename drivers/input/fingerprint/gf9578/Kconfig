@@ -1,0 +1,5 @@
+config BBK_GF9578
+	tristate "Goodix GF9578 fingerprint drvier support"
+	help
+	  Say Y here to enable goodix fingerprint driver support!
+

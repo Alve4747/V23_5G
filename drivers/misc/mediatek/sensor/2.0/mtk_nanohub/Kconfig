@@ -1,0 +1,5 @@
+config SUPPORT_ALS_CCT
+	bool "support als cct"
+	default n
+	help
+	  It support als cct

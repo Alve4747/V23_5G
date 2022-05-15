@@ -1,0 +1,4 @@
+config VIVO_BSP_INFO
+	tristate "vivo bsp info"
+	help
+	  This module provides bsp info support,ex:board_info,board_version,card_detected.

@@ -1,0 +1,7 @@
+config FREEZER
+	def_bool PM_SLEEP || CGROUP_FREEZER
+
+config RSC_FREEZER
+	bool "rsc values for freezer."
+	depends on FREEZER
+	default y

@@ -1,0 +1,2172 @@
+/* vivo zhangxiaodong add for aw8624 haptic begin */
+
+
+/* vivo zhangxiaodong add for pm8350bh haptic end */
+
+&vibrator0{
+status = "disable";
+};
+
+&pio {
+	lra_int_active: lra_int_active {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO170__FUNC_GPIO170>;
+			drive-strength = <2>;
+			bias-pull-up;
+			input-enable;
+		};
+	};
+};
+
+&i2c3 {
+
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	clock-frequency = <400000>;
+	mediatek,use-open-drain;
+
+	aw8624_haptic@5A {
+		compatible = "awinic,aw8624_haptic";
+		reg = <0x5A>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&lra_int_active>; // INT
+		irq-gpio = <&pio 170 0>;
+		reset-gpio = <&pio 171 0>;
+		status = "okay";
+		resistance_min = <18000>;
+		resistance_max = <27000>;
+		freq_min = <2200>;
+		freq_max = <2500>;
+		lra_info = <832>;
+		//disable-trigger;
+		awinic,vmax = <2500>;
+
+		effect_list_aw862xx = <&vivo_lra_effects_aw862xx>;
+		scene_array_aw862xx = <&vivo_lra_scenes_aw862xx>; //scene config list
+
+		vivo_lra_effects_aw862xx: vivo_lra_effects_aw862xx {
+			status = "okay";
+			compatible = "vivo,lra_effects_aw8624";
+		};
+
+		vivo_lra_scenes_aw862xx: vivo_lra_scenes_aw862xx {
+			status = "okay";
+			compatible = "vivo,lra_scenes_aw8624";
+		};
+	};
+
+};
+
+
+&vivo_lra_effects_aw862xx {
+	/*******************************************************************
+	 * Description of waveform data of aw8624 ：two forms(ram and rtp)
+	 ********************************************************************/
+	//Effect configuration list
+/* example
+	effect_1 {
+		awinic,effect-id = <1>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>; //ms
+		awinic,ram-id = <1>;
+		awinic,rtp-enable;
+		awinic,rtp-file = "default";
+	};
+*/
+
+// ram effect
+	effect_0 {
+		awinic,effect-id = <0>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <80>;
+		awinic,ram-id = <0>;
+	};
+
+	effect_1 {
+		awinic,effect-id = <1>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <11>;
+		awinic,ram-id = <1>;
+	};
+
+	effect_2 {
+		awinic,effect-id = <2>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <10>;
+		awinic,ram-id = <2>;
+	};
+
+	effect_3 {
+		awinic,effect-id = <3>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <8>;
+		awinic,ram-id = <3>;
+	};
+
+	effect_4 {
+		awinic,effect-id = <4>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <14>;
+		awinic,ram-id = <4>;
+	};
+
+	effect_5 {
+		awinic,effect-id = <5>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <16>;
+		awinic,ram-id = <5>;
+	};
+
+	effect_6 {
+		awinic,effect-id = <6>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>;
+		awinic,ram-id = <7>;//
+	};
+
+	effect_7 {
+		awinic,effect-id = <7>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_8 {
+		awinic,effect-id = <8>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_9 {
+		awinic,effect-id = <9>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <6>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_10 {
+		awinic,effect-id = <10>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <9>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_11 {
+		awinic,effect-id = <11>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_12 {
+		awinic,effect-id = <12>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <23>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_13 {
+		awinic,effect-id = <13>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <10>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_14 {
+		awinic,effect-id = <14>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_15 {
+		awinic,effect-id = <15>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <10>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_16 {
+		awinic,effect-id = <16>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <42>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_17 {
+		awinic,effect-id = <17>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_18 {
+		awinic,effect-id = <18>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <32>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_19 {
+		awinic,effect-id = <19>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <10>;
+		awinic,ram-id = <6>;
+	};
+
+	effect_20 {
+		awinic,effect-id = <20>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <15>;
+		awinic,ram-id = <6>;
+	};
+
+// rtp effect
+	/* Ringtone */
+	effect_101 {
+		awinic,effect-id = <101>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <23173>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Array_Mbira.bin";
+	};
+
+	effect_102 {
+		awinic,effect-id = <102>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <31458>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Blue_Meteor_Showers.bin";
+	};
+
+	effect_103 {
+		awinic,effect-id = <103>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <10967>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Elec_Synth.bin";
+	};
+
+	effect_104 {
+		awinic,effect-id = <104>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <4800>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Harp_Bell.bin";
+	};
+
+	effect_105 {
+		awinic,effect-id = <105>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <12223>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_High_Didi.bin";
+	};
+
+	effect_106 {
+		awinic,effect-id = <106>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <13640>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Labyrinth.bin";
+	};
+
+	effect_107 {
+		awinic,effect-id = <107>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <30302>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Limpid_Drop.bin";
+	};
+
+	effect_108 {
+		awinic,effect-id = <108>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <10436>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Lovely_Xylophone.bin";
+	};
+
+	effect_109 {
+		awinic,effect-id = <109>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <8361>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Marimba.bin";
+	};
+
+	effect_110 {
+		awinic,effect-id = <110>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <39263>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Occarina.bin";
+	};
+
+	effect_111 {
+		awinic,effect-id = <111>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <34276>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Resound.bin";
+	};
+
+	effect_112 {
+		awinic,effect-id = <112>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <16658>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Rhythm.bin";
+	};
+
+	effect_113 {
+		awinic,effect-id = <113>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <28615>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Ripples.bin";
+	};
+
+	effect_114 {
+		awinic,effect-id = <114>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <27481>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Scene_Play.bin";
+	};
+
+	effect_115 {
+		awinic,effect-id = <115>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <28501>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Set_Out.bin";
+	};
+
+	effect_116 {
+		awinic,effect-id = <116>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <29500>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Spacious.bin";
+	};
+
+	effect_117 {
+		awinic,effect-id = <117>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <12043>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Spring_Charm.bin";
+	};
+
+	effect_118 {
+		awinic,effect-id = <118>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <30000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Sunrise_View.bin";
+	};
+
+	effect_119 {
+		awinic,effect-id = <119>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <30445>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Sunrise_View_Dubstep.bin";
+	};
+
+	effect_120 {
+		awinic,effect-id = <120>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <12230>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Sunrise_View_Harp.bin";
+	};
+
+	effect_121 {
+		awinic,effect-id = <121>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <24601>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Sunrise_View_Lyric.bin";
+	};
+
+	effect_122 {
+		awinic,effect-id = <122>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <14965>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Sunrise_View_Piano.bin";
+	};
+
+	effect_123 {
+		awinic,effect-id = <123>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <24072>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Sunrise_View_Relax.bin";
+	};
+
+	effect_124 {
+		awinic,effect-id = <124>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <9731>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Tunk.bin";
+	};
+
+	effect_125 {
+		awinic,effect-id = <125>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3744>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Vintage_Ring.bin";
+	};
+
+	effect_126 {
+		awinic,effect-id = <126>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <20130>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Xtreme_Tone.bin";
+	};
+
+	effect_127 {
+		awinic,effect-id = <127>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <22820>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Xyl_Roll.bin";
+	};
+
+	effect_128 {
+		awinic,effect-id = <128>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <34715>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Fantasy_Blue.bin";
+	};
+
+	effect_129 {
+		awinic,effect-id = <129>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <31417>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Indomitable_Will.bin";
+	};
+
+	effect_130 {
+		awinic,effect-id = <130>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <28108>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Jovi_Lifestyle.bin";
+	};
+
+	effect_131 {
+		awinic,effect-id = <131>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <49024>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Jovi_Lifestyle_Full.bin";
+	};
+
+	effect_132 {
+		awinic,effect-id = <132>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <25496>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "R_Newborn.bin";
+	};
+	/*************************** Notification ***************************/
+	effect_201 {
+		awinic,effect-id = <201>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2529>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Andes.bin";
+	};
+
+	effect_202 {
+		awinic,effect-id = <202>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3125>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Bell.bin";
+	};
+
+	effect_203 {
+		awinic,effect-id = <203>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <875>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Bird.bin";
+	};
+
+	effect_204 {
+		awinic,effect-id = <204>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <545>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Bubble.bin";
+	};
+
+	effect_205 {
+		awinic,effect-id = <205>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1673>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Childlike.bin";
+	};
+
+	effect_206 {
+		awinic,effect-id = <206>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2563>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Circle.bin";
+	};
+
+	effect_207 {
+		awinic,effect-id = <207>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1317>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Cuckoo.bin";
+	};
+
+	effect_208 {
+		awinic,effect-id = <208>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3796>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Default.bin";
+	};
+
+	effect_209 {
+		awinic,effect-id = <209>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1511>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Dita.bin";
+	};
+
+	effect_210 {
+		awinic,effect-id = <210>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <574>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Dobe.bin";
+	};
+
+	effect_211 {
+		awinic,effect-id = <211>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <428>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Doda.bin";
+	};
+
+	effect_212 {
+		awinic,effect-id = <212>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3500>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_DoReMi.bin";
+	};
+
+	effect_213 {
+		awinic,effect-id = <213>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2961>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Dust.bin";
+	};
+
+	effect_214 {
+		awinic,effect-id = <214>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2719>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Echo.bin";
+	};
+
+	effect_215 {
+		awinic,effect-id = <215>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1600>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Grain.bin";
+	};
+
+	effect_216 {
+		awinic,effect-id = <216>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3937>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Harmonic.bin";
+	};
+
+	effect_217 {
+		awinic,effect-id = <217>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <760>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Klock.bin";
+	};
+
+	effect_218 {
+		awinic,effect-id = <218>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <554>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Little.bin";
+	};
+
+	effect_219 {
+		awinic,effect-id = <219>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3252>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Money.bin";
+	};
+
+	effect_220 {
+		awinic,effect-id = <220>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2664>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_MusicBox.bin";
+	};
+
+	effect_221 {
+		awinic,effect-id = <221>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2222>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Naughty.bin";
+	};
+
+	effect_222 {
+		awinic,effect-id = <222>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1425>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Peristalsis.bin";
+	};
+
+	effect_223 {
+		awinic,effect-id = <223>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3356>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Promote.bin";
+	};
+
+	effect_224 {
+		awinic,effect-id = <224>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1971>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Scale.bin";
+	};
+
+	effect_225 {
+		awinic,effect-id = <225>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2750>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Simple.bin";
+	};
+
+	effect_226 {
+		awinic,effect-id = <226>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2214>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Surprised.bin";
+	};
+
+	effect_227 {
+		awinic,effect-id = <227>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Theme.bin";
+	};
+
+	effect_228 {
+		awinic,effect-id = <228>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1549>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Twist.bin";
+	};
+
+	effect_229 {
+		awinic,effect-id = <229>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2375>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Unobtrusive.bin";
+	};
+
+	effect_230 {
+		awinic,effect-id = <230>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <410>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Whisper.bin";
+	};
+
+	effect_231 {
+		awinic,effect-id = <231>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1044>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Whistle.bin";
+	};
+
+	effect_232 {
+		awinic,effect-id = <232>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Arrival.bin";
+	};
+
+	effect_233 {
+		awinic,effect-id = <233>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <377>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Emergence.bin";
+	};
+
+	effect_234 {
+		awinic,effect-id = <234>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1325>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Transformation.bin";
+	};
+
+	effect_235 {
+		awinic,effect-id = <235>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <424>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Happy.bin";
+	};
+
+	effect_236 {
+		awinic,effect-id = <236>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <372>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Arrangement.bin";
+	};
+
+	effect_237 {
+		awinic,effect-id = <237>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <389>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "N_Encounter.bin";
+	};
+	/****************************** alarm *************************/
+
+	effect_301 {
+		awinic,effect-id = <301>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <47131>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Beautiful_Touching.bin";
+	};
+
+	effect_302 {
+		awinic,effect-id = <302>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <23359>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Clock_Alert.bin";
+	};
+
+	effect_303 {
+		awinic,effect-id = <303>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <36748>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Crisp_Ring.bin";
+	};
+
+	effect_304 {
+		awinic,effect-id = <304>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <30500>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Cycle_Oscillation.bin";
+	};
+
+	effect_305 {
+		awinic,effect-id = <305>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <32839>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Early_In_The_Morning.bin";
+	};
+
+	effect_306 {
+		awinic,effect-id = <306>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <33000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Fine_Day.bin";
+	};
+
+	effect_307 {
+		awinic,effect-id = <307>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <60869>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Flush_Of_Dawn.bin";
+	};
+
+	effect_308 {
+		awinic,effect-id = <308>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <16028>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Get_Up_Action.bin";
+	};
+
+	effect_309 {
+		awinic,effect-id = <309>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <52080>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Glassy_Lustre.bin";
+	};
+
+	effect_310 {
+		awinic,effect-id = <310>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <48750>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Lights.bin";
+	};
+
+	effect_311 {
+		awinic,effect-id = <311>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <34800>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Moonlight.bin";
+	};
+
+	effect_312 {
+		awinic,effect-id = <312>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <62404>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Morning_Scene.bin";
+	};
+
+	effect_313 {
+		awinic,effect-id = <313>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <55000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Sound_Of_The_Sea.bin";
+	};
+
+	effect_314 {
+		awinic,effect-id = <314>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <42471>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_Thump.bin";
+	};
+
+	effect_315 {
+		awinic,effect-id = <315>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <35910>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "A_New_World.bin";
+	};
+
+	effect_601 {
+		awinic,effect-id = <601>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <75>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_P92_SQ_X.bin";
+	};
+
+	effect_602 {
+		awinic,effect-id = <602>;
+		awinic,wf-vmax-mv = <6000>;
+		awinic,wf-length = <90>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_P92_SQ_W.bin";
+	};
+
+	effect_603 {
+		awinic,effect-id = <603>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <87>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Vector_CF_X.bin";
+	};
+
+	effect_604 {
+		awinic,effect-id = <604>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <69>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Yeniu_CF_W.bin";
+	};
+
+	effect_605 {
+		awinic,effect-id = <605>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <123>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_98k_JJ_X.bin";
+	};
+
+	effect_606 {
+		awinic,effect-id = <606>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <340>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_98k_JJ_W.bin";
+	};
+
+	effect_607 {
+		awinic,effect-id = <607>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <70>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Mini14_SB_X.bin";
+	};
+
+	effect_608 {
+		awinic,effect-id = <608>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <130>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sheshou_BQ_W.bin";
+	};
+
+	effect_609 {
+		awinic,effect-id = <609>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <70>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Sandan_X.bin";
+	};
+
+	effect_610 {
+		awinic,effect-id = <610>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <219>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Sandan_W.bin";
+	};
+
+	effect_611 {
+		awinic,effect-id = <611>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <70>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Jiqiang_W.bin";
+	};
+
+	effect_612 {
+		awinic,effect-id = <612>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <70>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Jiqiang_W.bin";
+	};
+
+	effect_613 {
+		awinic,effect-id = <613>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <70>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Jiqiang_W.bin";
+	};
+
+	effect_614 {
+		awinic,effect-id = <614>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <70>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Jiqiang_W.bin";
+	};
+
+	effect_620 {
+		awinic,effect-id = <620>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <69>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Yeniu_CF_W.bin";
+	};
+
+	effect_621 {
+		awinic,effect-id = <621>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <90>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_P92_SQ_W.bin";
+	};
+
+	effect_622 {
+		awinic,effect-id = <622>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <130>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sheshou_BQ_W.bin";
+	};
+
+	effect_623 {
+		awinic,effect-id = <623>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <219>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Sandan_W.bin";
+	};
+
+	effect_624 {
+		awinic,effect-id = <624>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <340>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_98k_JJ_W.bin";
+	};
+
+	effect_625 {
+		awinic,effect-id = <625>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <13>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Jiqiang_W.bin";
+	};
+
+	effect_641 {
+		awinic,effect-id = <641>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <40>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Collision.bin";
+	};
+
+	effect_642 {
+		awinic,effect-id = <642>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <40>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Hit_Wall.bin";
+	};
+
+	effect_643 {
+		awinic,effect-id = <643>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <400>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Drift.bin";
+	};
+
+	effect_644 {
+		awinic,effect-id = <644>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <400>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Acceleration.bin";
+	};
+
+	effect_645 {
+		awinic,effect-id = <645>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <200>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Acceleration_Small.bin";
+	};
+
+	effect_705 {
+		awinic,effect-id = <705>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <12000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "S_Space_Ship.bin";
+	};
+
+	effect_901 {
+		awinic,effect-id = <901>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <237>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_01.bin";
+	};
+
+	effect_902 {
+		awinic,effect-id = <902>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <130>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_02.bin";
+	};
+
+	effect_903 {
+		awinic,effect-id = <903>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <50>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_03.bin";
+	};
+
+	effect_904 {
+		awinic,effect-id = <904>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <888>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_04.bin";
+	};
+
+	effect_905 {
+		awinic,effect-id = <905>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <280>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_05.bin";
+	};
+
+	effect_906 {
+		awinic,effect-id = <906>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <875>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_06.bin";
+	};
+
+	effect_907 {
+		awinic,effect-id = <907>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1464>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_07.bin";
+	};
+
+	effect_908 {
+		awinic,effect-id = <908>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <130>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_08.bin";
+	};
+
+	effect_909 {
+		awinic,effect-id = <909>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <277>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_09.bin";
+	};
+
+	effect_910 {
+		awinic,effect-id = <910>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <435>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_10.bin";
+	};
+
+	effect_911 {
+		awinic,effect-id = <911>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2400>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_11.bin";
+	};
+
+	effect_912 {
+		awinic,effect-id = <912>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <503>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_12.bin";
+	};
+
+	effect_913 {
+		awinic,effect-id = <913>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <498>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_13.bin";
+	};
+
+	effect_914 {
+		awinic,effect-id = <914>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_14.bin";
+	};
+
+	effect_915 {
+		awinic,effect-id = <915>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <502>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_15.bin";
+	};
+
+	effect_916 {
+		awinic,effect-id = <916>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <972>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_16.bin";
+	};
+
+	effect_917 {
+		awinic,effect-id = <917>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <414>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_17.bin";
+	};
+
+	effect_918 {
+		awinic,effect-id = <918>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <740>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_18.bin";
+	};
+
+	effect_919 {
+		awinic,effect-id = <919>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <291>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_19.bin";
+	};
+
+	effect_920 {
+		awinic,effect-id = <920>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1319>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_20.bin";
+	};
+
+	effect_921 {
+		awinic,effect-id = <921>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_21.bin";
+	};
+
+	effect_922 {
+		awinic,effect-id = <922>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <480>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_22.bin";
+	};
+
+	effect_923 {
+		awinic,effect-id = <923>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <964>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_23.bin";
+	};
+
+	effect_924 {
+		awinic,effect-id = <924>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <209>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_24.bin";
+	};
+
+	effect_925 {
+		awinic,effect-id = <925>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <315>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_25.bin";
+	};
+
+	effect_926 {
+		awinic,effect-id = <926>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_26.bin";
+	};
+
+	effect_927 {
+		awinic,effect-id = <927>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <620>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_27.bin";
+	};
+
+	effect_928 {
+		awinic,effect-id = <928>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <447>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_28.bin";
+	};
+
+	effect_929 {
+		awinic,effect-id = <929>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <740>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_29.bin";
+	};
+
+	effect_930 {
+		awinic,effect-id = <930>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <745>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_30.bin";
+	};
+
+	effect_931 {
+		awinic,effect-id = <931>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <174>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_31.bin";
+	};
+
+	effect_932 {
+		awinic,effect-id = <932>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <199>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_32.bin";
+	};
+
+	effect_933 {
+		awinic,effect-id = <933>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <700>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_33.bin";
+	};
+
+	effect_934 {
+		awinic,effect-id = <934>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <93>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_34.bin";
+	};
+
+	effect_935 {
+		awinic,effect-id = <935>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1428>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_35.bin";
+	};
+
+	effect_936 {
+		awinic,effect-id = <936>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2858>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_36.bin";
+	};
+
+	effect_937 {
+		awinic,effect-id = <937>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <952>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_37.bin";
+	};
+
+	effect_938 {
+		awinic,effect-id = <938>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <440>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_38.bin";
+	};
+
+	effect_939 {
+		awinic,effect-id = <939>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1045>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_39.bin";
+	};
+
+	effect_940 {
+		awinic,effect-id = <940>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1179>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_40.bin";
+	};
+
+	effect_941 {
+		awinic,effect-id = <941>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1982>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_41.bin";
+	};
+
+	effect_942 {
+		awinic,effect-id = <942>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <126>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_42.bin";
+	};
+
+	effect_943 {
+		awinic,effect-id = <943>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <326>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_43.bin";
+	};
+
+	effect_944 {
+		awinic,effect-id = <944>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_44.bin";
+	};
+
+	effect_945 {
+		awinic,effect-id = <945>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <780>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_45.bin";
+	};
+
+	effect_946 {
+		awinic,effect-id = <946>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1079>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_46.bin";
+	};
+
+	effect_947 {
+		awinic,effect-id = <947>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <814>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_47.bin";
+	};
+
+	effect_948 {
+		awinic,effect-id = <948>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <906>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_48.bin";
+	};
+
+	effect_949 {
+		awinic,effect-id = <949>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <727>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_49.bin";
+	};
+
+	effect_950 {
+		awinic,effect-id = <950>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <429>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_50.bin";
+	};
+
+	effect_951 {
+		awinic,effect-id = <951>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <260>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_51.bin";
+	};
+
+	effect_952 {
+		awinic,effect-id = <952>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <119>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_52.bin";
+	};
+
+	effect_953 {
+		awinic,effect-id = <953>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <1843>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_53.bin";
+	};
+
+	effect_954 {
+		awinic,effect-id = <954>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <943>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_54.bin";
+	};
+
+	effect_955 {
+		awinic,effect-id = <955>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_55.bin";
+	};
+
+	effect_956 {
+		awinic,effect-id = <956>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_56.bin";
+	};
+
+	effect_957 {
+		awinic,effect-id = <957>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_57.bin";
+	};
+
+	effect_958 {
+		awinic,effect-id = <958>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_58.bin";
+	};
+
+	effect_959 {
+		awinic,effect-id = <959>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_59.bin";
+	};
+
+	effect_960 {
+		awinic,effect-id = <960>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <2000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_sgame_60.bin";
+	};
+
+	effect_10001 {
+		awinic,effect-id = <10001>;
+		awinic,wf-vmax-mv = <2300>;
+		awinic,wf-length = <95>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Assault_Rifle_AKM.bin";
+	};
+
+	effect_10002 {
+		awinic,effect-id = <10002>;
+		awinic,wf-vmax-mv = <2300>;
+		awinic,wf-length = <95>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Assault_Rifle_AKM.bin";
+	};
+
+	effect_10003 {
+		awinic,effect-id = <10003>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <79>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Auto_Assault_12.bin";
+	};
+
+	effect_10004 {
+		awinic,effect-id = <10004>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <79>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Auto_Assault_12.bin";
+	};
+	
+	effect_10005 {
+		awinic,effect-id = <10005>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <79>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Auto_Assault_12.bin";
+	};
+
+	effect_10006 {
+		awinic,effect-id = <10006>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <444>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Sniper_Rifle_AWM.bin";
+	};
+
+	effect_10007 {
+		awinic,effect-id = <10007>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <313>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Sniper_Rifle_Barrett.bin";
+	};
+
+	effect_10008 {
+		awinic,effect-id = <10008>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <107>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Squad_automatic_weapon_M249.bin";
+	};
+
+	effect_10009 {
+		awinic,effect-id = <10009>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <87>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Rifle_AR15.bin";
+	};
+
+	effect_10010 {
+		awinic,effect-id = <10010>;
+		awinic,wf-vmax-mv = <2000>;
+		awinic,wf-length = <87>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Rifle_AR15.bin";
+	};
+
+	effect_10011 {
+		awinic,effect-id = <10011>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <87>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Submachine_Gun_MP7.bin";
+	};
+
+	effect_10012 {
+		awinic,effect-id = <10012>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <88>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Kriss_Vector.bin";
+	};
+
+	effect_10013 {
+		awinic,effect-id = <10013>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <87>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Submachine_Gun_MP7.bin";
+	};
+
+	effect_10014 {
+		awinic,effect-id = <10014>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <90>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Glock_Pisto_G18C.bin";
+	};
+
+	effect_10015 {
+		awinic,effect-id = <10015>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <52>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Desert_Eagle.bin";
+	};
+
+	effect_10016 {
+		awinic,effect-id = <10016>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <88>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Kriss_Vector.bin";
+	};
+
+	effect_10017 {
+		awinic,effect-id = <10017>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <88>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Kriss_Vector.bin";
+	};
+
+	effect_10018 {
+		awinic,effect-id = <10018>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <88>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Kriss_Vector.bin";
+	};
+
+	effect_10019 {
+		awinic,effect-id = <10019>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <79>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Auto_Assault_12.bin";
+	};
+
+	effect_10020 {
+		awinic,effect-id = <10020>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <79>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Auto_Assault_12.bin";
+	};
+
+	effect_10021 {
+		awinic,effect-id = <10021>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <313>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Sniper_Rifle_Barrett.bin";
+	};
+
+	effect_10022 {
+		awinic,effect-id = <10022>;
+		awinic,wf-vmax-mv = <4000>;
+		awinic,wf-length = <260>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Semi_Automatic_Sniper_M110.bin";
+	};
+
+	effect_10023 {
+		awinic,effect-id = <10023>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <95>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Assault_Rifle_AKM.bin";
+	};
+
+	effect_10024 {
+		awinic,effect-id = <10024>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <87>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Rifle_AR15.bin";
+	};
+
+	effect_10025 {
+		awinic,effect-id = <10025>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <88>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Kriss_Vector.bin";
+	};
+
+	effect_10026 {
+		awinic,effect-id = <10026>;
+		awinic,wf-vmax-mv = <3000>;
+		awinic,wf-length = <87>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Rifle_AR15.bin";
+	};
+
+	effect_10027 {
+		awinic,effect-id = <10027>;
+		awinic,wf-vmax-mv = <2500>;
+		awinic,wf-length = <95>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Assault_Rifle_AKM.bin";
+	};
+
+	effect_26001 {
+		awinic,effect-id = <26001>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <6136>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_GameBegin.bin";
+	};
+
+	effect_26002 {
+		awinic,effect-id = <26002>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <5000>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_GameEnd.bin";
+	};
+
+	effect_26003 {
+		awinic,effect-id = <26003>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <452>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_FirstBlood.bin";
+	};
+
+	effect_26004 {
+		awinic,effect-id = <26004>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <399>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_TribleKill.bin";
+	};
+
+	effect_26005 {
+		awinic,effect-id = <26005>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <527>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_QuadraKill.bin";
+	};
+
+	effect_26006 {
+		awinic,effect-id = <26006>;
+		awinic,wf-vmax-mv = <5000>;
+		awinic,wf-length = <796>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_PentaKill.bin";
+	};
+
+	effect_25000 {
+		awinic,effect-id = <25000>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <500>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Monster.bin";
+	};
+
+	effect_25001 {
+		awinic,effect-id = <25001>;
+		awinic,wf-vmax-mv = <7000>;
+		awinic,wf-length = <3029>; //ms
+		awinic,rtp-enable;
+		awinic,rtp-file = "G_Game_Space.bin";
+	};
+
+};
+
+
+
+&vivo_lra_scenes_aw862xx {
+
+	status= "ok";
+
+	/***********************************************
+	 * The following array is the actual scenario configuration number；
+	 * @pram1：Scenario number
+	 * @parm2：Effect number（effect_*）
+	 * @parm3：Configuration of the voltage
+	 ***********************************************/
+
+	/* Short vibration base scenario list */
+
+	base_scene = /bits/ 16 <0 1 7000
+				1   0  7000
+				2   2  7000
+				3   3  7000
+				4   1  7000
+				5   4  7000
+			/* unlock */
+				51  4  5500
+				52  2  6000
+				53  4  5333
+				54  0  7000
+				55  4  5333
+				56  2  7000
+				57  1  6400
+				58  4  5333
+			/* camera -- Not affected by high, medium and low*/
+				71  2  5000
+				72  2  5000
+				73  2  5000
+				74  2  5000
+				75  2  5000
+				76  2  5000
+				77  3  5000
+				78  1  5000
+				79  4  5000
+			/* Systems and communications */
+				91  2  7000
+				92  2  4000
+				93  2  5000
+				94  3  6000
+				95  2  5000
+				96  2  7000
+				97  3  6667
+				98  2  7000
+			/* Tools and common controls */
+				101 3  6500
+				102 3  5000
+				103 3  3500
+				104 3  7000
+				105 3  7000
+				106 3  7000
+				107 3  6500
+				108 3  6500
+				109 2  6500
+				110 2  7000
+				111 3  5000
+				112 3  5333
+				113 1  7000
+				114 2  6667
+			/* The navigation system */
+				121 2  7000
+				122 2  5333
+				123 2  6667
+				124 4  5800
+				125 0  7000
+				126 1  6667
+				127 4  5800
+				128 3  7000
+				129 3  7000
+				130 3  7000
+				131 2  5333
+				132 2  4200
+				133 2  6000
+				134 2  7000
+				135 2  5800
+				136 2  5800
+				137 2  7000
+			/* Not affected by high, medium and low */
+				141 1  6000
+				142 1  7000
+				143 2  4000
+				144 2  5000
+				145 3  6000
+				146 3  7000
+				147 4  6600
+				148 4  7000
+				149 5  7000
+				150 5  5800
+				170 1  7000
+				171 1  4000
+				172 1  6000
+				173 1  8000
+				180 1  6000
+				181 1  6000>;
+
+	/* Expand scenario */
+
+	ext_scene = /bits/ 16 <301 101 7000
+				302 102 7000
+				303 103 7000
+				304 104 7000
+				305 105 7000
+				306 106 7000
+				307 107 7000
+				308 108 7000
+				309 109 7000
+				310 110 7000
+				311 111 7000
+				312 112 7000
+				313 113 7000
+				314 114 7000
+				315 115 7000
+				316 116 7000
+				317 117 7000
+				318 118 7000
+				319 119 7000
+				320 120 7000
+				321 121 7000
+				322 122 7000
+				323 123 7000
+				324 124 7000
+				325 125 7000
+				326 126 7000
+				327 127 7000
+				328 128 7000
+				329 129 7000
+				330 130 7000
+				331 131 7000
+				332 132 7000
+			// Notification
+				401 201 7000
+				402 202 7000
+				403 203 7000
+				404 204 7000
+				405 205 7000
+				406 206 7000
+				407 207 7000
+				408 208 7000
+				409 209 7000
+				410 210 7000
+				411 211 7000
+				412 212 7000
+				413 213 7000
+				414 214 7000
+				415 215 7000
+				416 216 7000
+				417 217 7000
+				418 218 7000
+				419 219 7000
+				420 220 7000
+				421 221 7000
+				422 222 7000
+				423 223 7000
+				424 224 7000
+				425 225 7000
+				426 226 7000
+				427 227 7000
+				428 228 7000
+				429 229 7000
+				430 230 7000
+				431 231 7000
+				432 232 7000
+				433 233 7000
+				434 234 7000
+				435 235 7000
+				436 236 7000
+				437 237 7000
+			// Alarm
+				501 301 7000
+				502 302 7000
+				503 303 7000
+				504 304 7000
+				505 305 7000
+				506 306 7000
+				507 307 7000
+				508 308 7000
+				509 309 7000
+				510 310 7000
+				511 311 7000
+				512 312 7000
+				513 313 7000
+				514 314 7000
+				515 315 7000
+			// Game
+				601 601 5000
+				602 602 6000
+				603 603 5000
+				604 604 4000
+				605 605 5000
+				606 606 5000
+				607 607 5000
+				608 608 4000
+				609 609 5000
+				610 610 5000
+				611 611 5000
+				612 612 4000
+				613 613 6000
+				614 614 6000
+				620 620 5000
+				621 621 5000
+				622 622 5000
+				623 623 5000
+				624 624 5000
+				625 625 3990
+
+				641 641 7000
+				642 642 7000
+				643 643 7000
+				644 644 7000
+				645 645 7000
+
+                705 705 7000
+
+				901 901 7000
+				902 902 7000
+				903 903 7000
+				904 904 7000
+				905 905 7000
+				906 906 7000
+				907 907 7000
+				908 908 7000
+				909 909 7000
+				910 910 7000
+				911 911 7000
+				912 912 7000
+				913 913 7000
+				914 914 7000
+				915 915 7000
+				916 916 7000
+				917 917 7000
+				918 918 7000
+				919 919 7000
+				920 920 7000
+				921 921 7000
+				922 922 7000
+				923 923 7000
+				924 924 7000
+				925 925 7000
+				926 926 7000
+				927 927 7000
+				928 928 7000
+				929 929 7000
+				930 930 7000
+				931 931 7000
+				932 932 7000
+				933 933 7000
+				934 934 7000
+				935 935 7000
+				936 936 7000
+				937 937 7000
+				938 938 7000
+				939 939 7000
+				940 940 7000
+				941 941 7000
+				942 942 7000
+				943 943 7000
+				944 944 7000
+				945 945 7000
+				946 946 7000
+				947 947 7000
+				948 948 7000
+				949 949 7000
+				950 950 7000
+				951 951 7000
+				952 952 7000
+				953 953 7000
+				954 954 7000
+				955 955 7000
+				956 956 7000
+				957 957 7000
+				958 958 7000
+				959 959 7000
+				960 960 7000
+
+				10001 10001 2300
+				10002 10002 2300
+				10003 10003 3000
+				10004 10004 7000
+				10005 10005 7000
+				10006 10006 7000
+				10007 10007 7000
+				10008 10008 7000
+				10009 10009 7000
+				10010 10010 7000
+				10011 10011 7000
+				10012 10012 7000
+				10013 10013 7000
+				26001 26001 5000
+				26002 26002 5000
+				26003 26003 5000
+				26004 26004 5000
+				26005 26005 5000
+				26006 26006 5000
+				25000 25000 7000
+				25001 25001 7000>;
+
+};

@@ -1,0 +1,172 @@
+/*********************touch screen config *************************/
+&touchscreencfg { /* vivo ts configure */
+ tp_module1 {
+        compatible = "vivo,touch-panel-module";
+        vts-ic-number=<47>;
+        vts-type=<0>;
+        vts-lcmid=<32>;//CPD2050  1211735 GT9885T SDC 
+        vts-dimention-x=<7680>;
+        vts-dimention-y=<17408>;
+        vts-display-x=<1080>;
+        vts-display-y=<2400>;
+        vts-tx-sensors=<34>;
+        vts-rx-sensors=<15>;
+        vts-incell=<0>;
+        vts-need-caliberation=<0>;
+        vts-virtual-proximinity=<0>;
+        vts-long-press=<1>;
+        vts-module-vendor=<0x90>;
+        vts-game-mode=<1>;
+        vts-gesture=<1>;
+        vts-game-high_rate=<1>;//0:keep prev   1: high_rate  2:normal_rate 
+        vts-game-idle-time=<10>;//0: keep prev  FF:ic default time , 0~ff: enter idle time    
+        vts-fp-feedback=<1>;
+        vts-input-method=<1>;
+        vts-bus-state-set=<1>;
+        vts-resolution-adjust=<1>;
+        vts-screen-clock=<1>;
+        vts-sclock-hilight=<1>;
+        vts-report-timestamp = <1>;
+        vts-finger-mode=<1>;
+        vts-channel_comp_collect=<1>;
+        vts-fp-notifier=<1>;
+    };
+
+};
+
+/ {
+	fragment@touch {
+		target-path = "/";
+		__overlay__ {
+			mobileevent {
+				status = "okay";
+				compatible = "vivo,mobile_event";
+				vivo-i2c-event=<1>;
+				vivo-channel-broken=<1>;
+			};
+		};
+	};
+};
+
+&pio {
+	spi_ft_cfg:spi_ft_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO182__FUNC_SPI1_CLK>,
+					<PINMUX_GPIO185__FUNC_SPI1_MO>;
+			drive-strength = <1>;//0:2mA 1:4mA 2:6mA 3:8mA 4:10mA 5:12mA 6:14mA 7:16mA
+		};
+	};
+
+	spi_nt_cfg:spi_nt_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO182__FUNC_SPI1_CLK>,
+					<PINMUX_GPIO185__FUNC_SPI1_MO>;
+			drive-strength = <4>;
+		};
+	};
+
+	spi_ili_cfg:spi_ili_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO182__FUNC_SPI1_CLK>,
+					<PINMUX_GPIO185__FUNC_SPI1_MO>;
+			drive-strength = <4>;
+		};
+	};
+	
+	spi_cs_set_cfg:spi_cs_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO183__FUNC_SPI1_CSB>;
+			drive-strength = <3>;
+		};
+	};
+
+	spi_cs_pulllow_cfg:spi_cs_pulllow {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO183__FUNC_GPIO183>;
+			slew-rate = <1>;
+			output-low;
+		};
+	};
+	
+	spi_clk_cfg:spi_clk_set {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO182__FUNC_SPI1_CLK>;
+			drive-strength = <1>;//0:2mA 1:4mA 2:6mA 3:8mA 4:10mA 5:12mA 6:14mA 7:16mA
+		};
+	};
+
+	tp_reset_active_cfg:tp_reset_active {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO15__FUNC_GPIO15>;
+			slew-rate = <1>;
+			output-high;
+		};
+	};
+
+	tp_reset_sleep_cfg:tp_reset_sleep {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO15__FUNC_GPIO15>;
+			slew-rate = <1>;
+			output-low;
+		};
+	};
+};
+
+&spi1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	mediatek,kthread-rt = <1>;
+	pinctrl-names="default";
+	pinctrl-0 = <&spi_clk_cfg>;
+	vts_device@0 {
+		compatible = "vivo,ts-spi";
+		status = "okay";
+		reg=<0>;
+		spi-max-frequency = <4800000>;
+
+		gt9885 {
+			compatible = "goodix,gt9885-spi";
+			status = "ok";
+			vts-type=<0>;
+			vts-ic-number=<47>;
+			interrupt-parent = <&pio>;
+			interrupts = <14 IRQ_TYPE_EDGE_FALLING 14 0>;
+			avddvtouch-supply = <&mt_pmic_vmch_ldo_reg>;	/*3V PMIC*/
+			spi-max-frequency = <7000000>;	
+			spi-mode = <0>;	
+			goodix,reset-gpio = <&pio 15 0x00>;
+			goodix,irq-gpio = <&pio 14 0x00>;
+			goodix,irq-flags = <2>; /* 1:trigger rising, 2:trigger falling;*/
+			//pinctrl-names ="pmx_clk_active","pmx_clk_suspend";
+			//pinctrl-0 = <&spi_clk_cfg>;
+			//pinctrl-1 = <&spi_clk_cfg>;
+			sensor-test-key= "com.goodix:GTMTest:android.intent.action.goodix:0:goodixTestResult";
+			lcm-noise-test-key="com.goodix.deltadiff:DeltaDiffActivity:action.null:null:null";
+			rawdata-test-key="com.goodix.deltadiff:DataShowActivity:null:null:null";
+			rf-noise-test-key="com.goodix.deltadiff:BspTestActivity:com.goodix.deltadiff.action.Receiver:0:GOODIX_DELTA";
+			goodix,panel-max-id = <10>;
+			goodix,panel-max-x = <1080>;
+			goodix,panel-max-y = <2400>;
+			goodix,panel-max-w = <512>;
+			goodix,panel-max-p = <512>;
+			goodix,panel-key-map = <158 172 217>; /*KEY_BACK, KEY_HOMEPAGE, KEY_SEARCH*/
+			goodix,power-on-delay-us = <30000>; /*30ms*/
+			goodix,power-off-delay-us = <5000>;
+			goodix,i2c-read-max-size = <1>;/*i2c read max byte one time, when spi mode ,this value should be zero or one */
+ 			
+			/*goodix,swap-axis;*/
+			goodix,x2x;
+			goodix,y2y;
+			goodix,pen-enable;
+			goodix,key-of-pen = <331 332>;/*BTN_STYLUS, BTN_STYLUS2*/
+			sensor0 {
+				normal-cfg = [
+				];
+			};
+			
+		};
+
+	};
+};
+

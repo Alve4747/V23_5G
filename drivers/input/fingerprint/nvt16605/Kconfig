@@ -1,0 +1,5 @@
+config BBK_NVT16605
+  tristate "NOVATEK OEM fingerprint BBK_NT16602 support"
+  default n
+  help
+    Novatek Fingerprint chip NT16605 TEE driver

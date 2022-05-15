@@ -1,0 +1,6 @@
+config SN100_SPI
+	bool "sn100 NFC spi clk control"
+	default n
+config SEC_NFC
+	bool "SEC NFC"
+	default n

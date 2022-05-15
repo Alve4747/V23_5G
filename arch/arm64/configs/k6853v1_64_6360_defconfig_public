@@ -1,0 +1,14 @@
+CONFIG_SECURITY_SELINUX_DEVELOP=y
+
+# vivo XieJiYuan add for kernel hardening begin
+CONFIG_SLAB_FREELIST_RANDOM=y
+CONFIG_SLAB_FREELIST_HARDENED=y
+# vivo XieJiYuan add for kernel hardening end
+CONFIG_UFS_IO_STATISTICS=y
+CONFIG_CFQ_GROUP_IOSCHED=n
+
+# vivo add for gud kernel driver begin
+CONFIG_TEE=y
+CONFIG_TRUSTONIC_TEE_SUPPORT=y
+CONFIG_MTK_TEE_GP_SUPPORT=y
+# vivo add for gud kernel driver end
